@@ -1,13 +1,14 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSelector } from 'react-redux';
 import AppointmentScreen from '../page/appointment/view';
 import HomeScreen from '../page/home/view';
 import MedicineScreen from '../page/medicine/view';
 import TrackScreen from '../page/track/view';
-import {Image , Text, View} from 'react-native'
+import { Image, Text, View } from 'react-native'
+import { Avatar, Badge } from 'react-native-elements'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { navigationRef } from './NavigationService';
@@ -31,12 +32,28 @@ const homeOptions = {
 
 function LogoTitle(props) {
   return (
-    <View>
-    <Text style ={{fontWeight: 'bold'}}>HealthU</Text>
-    {/* <Image
-      style={{ width: 50, height: 50 }}
-      source={require('./asset/logo.png')}
-    /> */}
+    <View style={{ flex: 1, flexDirection: "row" }}>
+      <Text style={{ fontWeight: 'bold',fontSize:20, color:"#88d06b"}}>HealthU</Text>
+      <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-between", paddingLeft: 200 }}>
+        <MaterialCommunityIcons name="magnify" color="#808080" size={27} />
+        <View>
+          <MaterialCommunityIcons name="bell" color="#808080" size={27} />
+          <Badge
+            status="warning"
+            value ={2}
+            containerStyle={{ position: 'absolute', top: -4, right: -4 }}
+          />
+        </View>
+        <Avatar
+          rounded
+          size={30}
+          source={{
+            uri:
+              'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+          }}
+        />
+      </View>
+
     </View>
   );
 }
@@ -47,9 +64,9 @@ function HomeStackScreen(props) {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
-       name="Home"
-       component={HomeScreen}
-       options={{ headerTitle: props => <LogoTitle {...props} /> }} />
+        name="Home"
+        component={HomeScreen}
+        options={{ headerTitle: props => <LogoTitle {...props} /> }} />
     </HomeStack.Navigator>
   );
 }

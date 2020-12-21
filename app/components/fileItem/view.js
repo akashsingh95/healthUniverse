@@ -29,15 +29,15 @@ class FileItem extends React.PureComponent {
 
     render() {
         return (
-
+          
             <Card containerStyle={{ margin: 10, height: 280, width: 390  }}
                 title={this.props.data.item.name}
-                image={require('../../assets/hospital.jpg')}>
+                image={this.props.data.item.img}>
                 {this.props.data.item.services ? this.hospitalService(this.props.data.item.services) : null}
 
                 <View style={{ flexDirection: "row", justifyContent: "space-between"}}>
-                    <Text style={{ color: "#79b18c" }}>20 Beds</Text>
-                    <Text>2.4 km</Text>
+                    <Text style={{ color: "#79b18c" }}>{this.props.data.item.beds} Beds</Text>
+                    <Text>{this.props.data.item.distance} km</Text>
                     <Rating imageSize={20} readonly startingValue={2} />
                 </View>
             </Card>
